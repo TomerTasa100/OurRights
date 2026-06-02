@@ -6,8 +6,9 @@ from langchain_chroma import Chroma
 def test_vector_search():
     persist_directory = "chroma_db"
 
-    # הכנס את מפתח ה-API שלך כאן
-    os.environ["OPENAI_API_KEY"] = "REMOVEDproj-IWBCO7fdLn6aDP7jhodhqZHIchP3ItpVIZzl2H2gCyHYdtCz4E1YQCwJ7UNMJP_oHHRXnHduNJT3BlbkFJMq6l5MsX7VfD1G1O_YqMEEW5KHfiW73ojt3nNPVoJ035iQT0ZzJLXjQRtm4j5J7XN5WQZXmwwA"
+    # ה-API key נטען ממשתנה הסביבה OPENAI_API_KEY (למשל מקובץ .env)
+    if not os.getenv("OPENAI_API_KEY"):
+        raise ValueError("Missing OPENAI_API_KEY environment variable")
 
     # 1. טעינת מסד הנתונים הקיים (ChromaDB לא יבנה אותו מחדש, רק יקרא ממנו)
     embeddings_model = OpenAIEmbeddings(model="text-embedding-3-small")
