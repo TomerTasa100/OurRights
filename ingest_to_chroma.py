@@ -10,8 +10,9 @@ def build_vector_db():
     data_folder = "smart_data"
     persist_directory = "chroma_db"  # כאן יישמר מסד הנתונים שלנו
 
-    # הכנס את מפתח ה-API שלך כאן
-    os.environ["OPENAI_API_KEY"] = "REMOVEDproj-IWBCO7fdLn6aDP7jhodhqZHIchP3ItpVIZzl2H2gCyHYdtCz4E1YQCwJ7UNMJP_oHHRXnHduNJT3BlbkFJMq6l5MsX7VfD1G1O_YqMEEW5KHfiW73ojt3nNPVoJ035iQT0ZzJLXjQRtm4j5J7XN5WQZXmwwA"
+    # ה-API key נטען ממשתנה הסביבה OPENAI_API_KEY (למשל מקובץ .env)
+    if not os.getenv("OPENAI_API_KEY"):
+        raise ValueError("Missing OPENAI_API_KEY environment variable")
 
     # אם כבר קיים מסד נתונים ישן, נמחק אותו כדי להתחיל נקי
     if os.path.exists(persist_directory):
